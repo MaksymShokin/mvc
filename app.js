@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
+const noPageFoundController = require('./controllers/404');
 
 const app = express();
 
@@ -20,9 +21,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 
-app.use((req, res, next) => {
-  res.status(404).render('404', {title: 'Page not found ejs', path: ''});
-})
+app.use(noPageFoundController.get404);
 
 app.listen(3000);
 
