@@ -13,6 +13,18 @@ exports.getProducts = (req, res, next) => {
   });
 };
 
+exports.getProductDetails = (req, res, next) => {
+  const productId = req.params.productId;
+
+  Product.getById(productId, product => {
+    res.render('shop/product-detail', {
+      title: product.title,
+      path: '/products',
+      product: product
+    });
+  })
+};
+
 exports.getCart = (req, res, next) => {
   res.render('shop/cart', {
     title: 'Cart',
@@ -31,13 +43,6 @@ exports.getCheckout = (req, res, next) => {
   res.render('shop/checkout', {
     title: 'Checkout',
     path: '/checkout'
-  });
-};
-
-exports.getProductDetails = (req, res, next) => {
-  res.render('shop/product-detail', {
-    title: 'Product detail',
-    path: '/product-detail'
   });
 };
 
