@@ -1,12 +1,9 @@
 const Product = require('../models/product');
 
 exports.getAddProduct = (req, res, next) => {
-  res.render('admin/add-product', {
+  res.render('admin/edit-product', {
     title: 'Add product',
-    path: 'admin/add-product',
-    productCSS: true,
-    formsCSS: true,
-    activeAddProduct: true,
+    path: 'admin/add-product'
   });
 };
 
@@ -22,12 +19,14 @@ exports.postAddProduct = (req, res, next) => {
 };
 
 exports.getEditProduct = (req, res, next) => {
+  const isEditMode = req.query.edit;
+
+  console.log(isEditMode)
+  
   res.render('admin/edit-product', {
     title: 'Edit product',
-    path: 'admin/add-product',
-    productCSS: true,
-    formsCSS: true,
-    activeAddProduct: true,
+    path: 'admin/edit-product',
+    editing: isEditMode
   });
 };
 
