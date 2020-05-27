@@ -39,9 +39,19 @@ module.exports = class Product {
         this.id = Math.random().toString();
         products.push(this);
         fs.writeFile(filePath, JSON.stringify(products), error => {
+          console.log(error);
+        });
+      }
+    });
+  }
+
+  static delete(id) {
+    getProductsFromFile(products => {
+      const updatedProducts = products.filter(prod => prod.id !== id);
+      
+      fs.writeFile(filePath, JSON.stringify(updatedProducts), error => {
         console.log(error);
       });
-      }
     });
   }
 
