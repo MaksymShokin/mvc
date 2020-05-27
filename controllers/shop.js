@@ -63,6 +63,16 @@ exports.getOrders = (req, res, next) => {
   });
 };
 
+exports.postCartDeleteItem = (req, res, next) => {
+  const productId = req.body.productId;
+
+  Product.getById(productId, (product) => {
+    Cart.deleteProduct(productId, product.price);
+  })
+  
+  res.redirect('/cart')
+}
+
 exports.getCheckout = (req, res, next) => {
   res.render('shop/checkout', {
     title: 'Checkout',
