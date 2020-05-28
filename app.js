@@ -11,9 +11,11 @@ const db = require('./helpers/database');
 
 const app = express();
 
-db.execute('SELECT * FROM products').then(products => {
-  console.log(products)
-})
+db.execute('SELECT * FROM products')
+  .then(result => {
+    console.log(result[0], result[1])
+  })
+  .catch(err => console.log(err))
 
 // template engine
 app.set('view engine', 'ejs');
