@@ -7,7 +7,13 @@ const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 const noPageFoundController = require('./controllers/404');
 
+const db = require('./helpers/database');
+
 const app = express();
+
+db.execute('SELECT * FROM products').then(products => {
+  console.log(products)
+})
 
 // template engine
 app.set('view engine', 'ejs');
@@ -27,4 +33,4 @@ app.listen(3000);
 
 // templating engines
 // npm install ejs pug express-handlebars
-
+// npm install --save mysql2
